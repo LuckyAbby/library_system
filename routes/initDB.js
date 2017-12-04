@@ -27,6 +27,11 @@ app.route('/initDB', 'post', function * (req, res) {
   'rGrade integer ' +
   ' ); ';
 
+  const createAdmin = 'create table admin ( ' +
+  'aID text, ' +
+  'aPassword text'
+  ' ); ';
+
   const createLend = 'create table lend ( ' +
   'bID text, ' +
   'rID text, ' +
@@ -44,7 +49,7 @@ app.route('/initDB', 'post', function * (req, res) {
     return getHtml("<div id='result' style='display:none'>0</div>成功");
   } catch (e) {
     console.log('初始化数据库出错: ', e);
-    return getHtml("<div id='result' style='display:none'>0</div>失败：" + JSON.stringify(e));
+    return getHtml("<div id='result' style='display:none'>0</div>返回信息：" + JSON.stringify(e));
   }
 
 });

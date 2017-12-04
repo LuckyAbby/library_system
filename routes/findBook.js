@@ -46,17 +46,17 @@ app.route('/findBook', 'post', function*(req, res) {
   try {
     console.log('sql: ', sql);
     const books = yield db.execSQL(sql);
-    let html = '<table border=1 id=\'result\'>';
-      // '<tr>' +
-      // '<td>书号</td>' +
-      // '<td>书名</td>' +
-      // '<td>总数量</td>' +
-      // '<td>在库数量</td>' +
-      // '<td>出版社</td>' +
-      // '<td>出版日期</td>' +
-      // '<td>作者</td>' +
-      // '<td>内容摘要</td>' +
-      // '</tr>';
+    let html = '<table border=1 id=\'result\' class="table table-striped table-hover">'+
+      '<tr>' +
+      '<td>书号</td>' +
+      '<td>书名</td>' +
+      '<td>总数量</td>' +
+      '<td>在库数量</td>' +
+      '<td>出版社</td>' +
+      '<td>出版日期</td>' +
+      '<td>作者</td>' +
+      '<td>类别</td>' +
+      '</tr>';
     books.map((item) => {
       console.log('item: ', item);
       html += '<tr>' +
@@ -69,6 +69,18 @@ app.route('/findBook', 'post', function*(req, res) {
         `<td>${item.bAuthor}</td>` +
         `<td>${item.bMem}</td>` +
       '</tr>';
+      // html += `
+      //   <tr>
+      //     <td>${item.bID}</td>
+      //     <td>${item.bName}</td>
+      //     <td>${item.bCnt}</td>
+      //     <td>${item.bCntLeft}</td>
+      //     <td>${item.bPub}</td>
+      //     <td>${item.timestampToDate(item.bDate)}</td>
+      //     <td>${item.bAuthor}</td>
+      //     <td>${item.bMem}</td>
+      //   </tr>
+      // `
     });
     html += '</table>';
     console.log('查询书籍成功：', books);

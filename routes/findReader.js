@@ -13,8 +13,8 @@ app.route('/findReader', 'post', function*(req, res) {
   const rName = req.body.rName;
   const rSex = req.body.rSex;
   const rDept = req.body.rDept;
-  const rGrade0 = req.body.rGrade0;
-  const rGrade1 = req.body.rGrade1;
+  // const rGrade0 = req.body.rGrade0;
+  // const rGrade1 = req.body.rGrade1;
 
   let sql = 'select * from readers where ';
 
@@ -30,25 +30,25 @@ app.route('/findReader', 'post', function*(req, res) {
   if (rDept) {
     sql += `rDept like '%${rDept}%' and `;
   }
-  if (rGrade0) {
-    sql += `rGrade >= ${parseInt(rGrade0, 10)} and `;
-  }
-  if (rGrade1) {
-    sql += `rGrade <= ${parseInt(rGrade1, 10)} and `;
-  }
+  // if (rGrade0) {
+  //   sql += `rGrade >= ${parseInt(rGrade0, 10)} and `;
+  // }
+  // if (rGrade1) {
+  //   sql += `rGrade <= ${parseInt(rGrade1, 10)} and `;
+  // }
   // 添加一个永远为真的条件，以便拼接完整个 SQL
   sql += ' 1';
   try {
     console.log('sql: ', sql);
     const readers = yield db.execSQL(sql);
-    let html = '<table border=1 id=\'result\'>';
-      // '<tr>' +
-      // '<td>证号</td>' +
-      // '<td>姓名</td>' +
-      // '<td>性别</td>' +
-      // '<td>系名</td>' +
-      // '<td>年级</td>' +
-      // '</tr>';
+    let html = '<table border=1 id=\'result\' class="table table-striped table-hover">' +
+      '<tr>' +
+      '<td>编号</td>' +
+      '<td>姓名</td>' +
+      '<td>性别</td>' +
+      '<td>部门</td>' +
+      '<td>职位编号</td>' +
+      '</tr>';
     readers.map((item) => {
       console.log('item: ', item);
       html += '<tr>' +
@@ -64,7 +64,7 @@ app.route('/findReader', 'post', function*(req, res) {
     return getHtml(html);
   } catch(e) {
     console.log('查询读者失败：', JSON.stringify(e));
-    return getHtml("<div id='result' style='display:none'>2</div>查询读者失败：" + JSON.stringify(e));
+    // return getHtml("<div id='result' style='display:none'>2</div>查询读者失败：" + JSON.stringify(e));
   }
 
 });

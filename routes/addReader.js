@@ -16,9 +16,9 @@ app.route('/addReader','post', function*(req, res) {
   if (!rID) {
     return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写证号");
   }
-  if (rID.length > 8) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：证号最多8个字符");
-  }
+  // if (rID.length > 8) {
+  //   return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：证号最多8个字符");
+  // }
   if (!rName) {
     return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写姓名");
   }
@@ -32,16 +32,22 @@ app.route('/addReader','post', function*(req, res) {
     return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：性别应该填写“男”或者“女”");
   }
   if (!rDept) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写系名");
+    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写部门名");
   }
-  if (rDept.length > 10) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：系名最多10个字符");
+  // if (rDept.length > 10) {
+  //   return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：系名最多10个字符");
+  // }
+  if (rDept.length > 20) {
+    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：部门名最多20个字符");
   }
+  // if (!rGrade) {
+  //   return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写年级");
+  // }
   if (!rGrade) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写年级");
+    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写职位编号");
   }
   if (!(/^\d+$/.test(rGrade))) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：年级应该是正整数");
+    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：职位编号应该是正整数");
   }
 
   const sqlFind = 'select rID from readers where rID=?';

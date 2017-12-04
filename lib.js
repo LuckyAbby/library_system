@@ -1,6 +1,13 @@
 'use strict';
 exports.html={
-	begin:'<html><head><META HTTP-EQUIV="Content-Type" Content="text-html; charset=utf-8"></head><body>',
+	begin:
+	`<html>
+		<head>
+			<META HTTP-EQUIV="Content-Type" Content="text-html; charset=utf-8">
+			<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		</head>
+		<body>`,
 	end:'</body></html>'
 };
 

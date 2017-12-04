@@ -33,14 +33,14 @@ app.route('/findOverdue', 'post', function*(req, res) {
   try {
     const lendList = yield db.execSQL(sqlLend, [rID]);
     console.log('lendList: ', lendList);
-    let html = '<table border=1 id=\'result\'>';
-      // '<tr>' +
-      // '<td>书号</td>' +
-      // '<td>书名</td>' +
-      // '<td>借书日期</td>' +
-      // '<td>应该还书的日期</td>' +
-      // '<td>是否超期</td>' +
-      // '</tr>';
+    let html = '<table border=1 id=\'result\' class="table table-striped table-hover">' +
+      '<tr>' +
+      '<td>书号</td>' +
+      '<td>书名</td>' +
+      '<td>借书日期</td>' +
+      '<td>应该还书的日期</td>' +
+      '<td>是否超期</td>' +
+      '</tr>';
     lendList.map((item) => {
       console.log('item: ', item);
       let isOverdue = '否';

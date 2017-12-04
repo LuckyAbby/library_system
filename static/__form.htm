@@ -86,7 +86,7 @@
 </head>
 
 <body>
-  测试项目：
+  请选择您要进行的操作：
   <select onchange="ChgForm()" id="selFrom">
 <option value="x" selected>数据库初始化
 <option value=0>添加新书
@@ -107,7 +107,7 @@
 
   <!-- x 初始化数据库 -->
   <div id="divx">
-    <font color=red><b>入口URL</b>　填写用于处理此次提交的url(相对于__index.htm所在的路径)：</font><br><input class=editr type=text id="urlx" value="initDB">
+    <font color=red><b>入口URL</b>　填写用于处理此次提交的url(相对于__index.htm所在的路径)：</font><br><input class=editr type=text id="urlx" value="initDB" disabled="disabled">
     <hr size=2 color=red>
     <form id="formx" target="frmPage" action="" method="post">
       此接口不提交任何数据
@@ -125,15 +125,15 @@
 
   <!-- 0 添加新书 -->
   <div id="div0" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url0" value="addNewBook">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url0" value="addNewBook" disabled="disabled">
     <hr size=2 color=red>
     <form id="form0" target="frmPage" action="" method="post">
-      <b>书号</b>[<u>bID</u>](惟一标识每种书,最多30个字符,如“ISBN&nbsp7-5325-2480-9”)：<br><input class=edit type=text name="bID" value="ISBN 7-5325-2480-9"><br><br>
-      <b>书名</b>[<u>bName</u>](最多30个字符，如“人间词话”)：<br><input class=edit type=text name="bName" value="人间词话"><br><br>
-      <b>出版社</b>[<u>bPub</u>](最多30个字符，如“上海古籍出版社”)：<br><input class=edit type=text name="bPub" value="上海古籍出版社"><br><br>
+      <b>书号</b>[<u>bID</u>](惟一标识每种书,最多30个字符,如“ISBN&nbsp7-5325-2480-9”)：<br><input class=edit type=text name="bID" value="ISBN 7-5325-2480-9" class="form-control"><br><br>
+      <b>书名</b>[<u>bName</u>](最多30个字符，如“人间词话”)：<br><input class=edit type=text name="bName" value="人间词话" class="form-control"><br><br>
+      <b>出版社</b>[<u>bPub</u>](最多30个字符，如“上海古籍出版社”)：<br><input class=edit type=text name="bPub" value="上海古籍出版社" class="form-control"><br><br>
       <b>出版日期</b>[<u>bDate</u>](提交格式为“yyyy-mm-dd”，如“2008-08-09”)：<br><input class=edit type=text name="bDate" value="2008-08-09"><br><br>
       <b>作者</b>[<u>bAuthor</u>](最多20个字符，如“王国维”)：<br><input class=edit type=text name="bAuthor" value="王国维"><br><br>
-      <b>内容摘要</b>[<u>bMem</u>](最多30个字符，如“高等教育出版社”)：<br><input class=edit type=text name="bMem" value="高等教育出版社"><br><br>
+      <b>类别</b>[<u>bMem</u>](最多10个字符，如“技术类”)：<br><input class=edit type=text name="bMem" value="非技术类"><br><br>
       <b>数量</b>[<u>bCnt</u>](整数，应该>0，表示新书的数量)：<br><input class=edit type=text name="bCnt" value="10"><br><br>
     </form>
     <center><input type=button value="添加新书" onclick="DoSubmit()"></center><br>
@@ -155,7 +155,7 @@
 
   <!-- 1 增加书籍数量 -->
   <div id="div1" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url1" value="addBookNumber">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url1" value="addBookNumber" disabled="disabled">
     <hr size=2 color=red>
     <form id="form1" target="frmPage" action="" method="post">
       <b>书号</b>[<u>bID</u>](惟一标识每种书,最多30个字符,如“ISBN&nbsp7-5325-2480-9”)：<br><input class=edit type=text name="bID" value="ISBN 7-5325-2480-9"><br><br>
@@ -180,7 +180,7 @@
 
   <!-- 2 删除/减少书籍 -->
   <div id="div2" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url2" value="deleteBook">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url2" value="deleteBook" disabled="disabled" >
     <hr size=2 color=red>
     <form id="form2" target="frmPage" action="" method="post">
       <b>书号</b>[<u>bID</u>](惟一标识每种书,最多30个字符,如“ISBN&nbsp7-5325-2480-9”)：<br><input class=edit type=text name="bID" value="ISBN 7-5325-2480-9"><br><br>
@@ -209,7 +209,7 @@
 
   <!-- 3 修改书籍信息 -->
   <div id="div3" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url3" value="updateBook">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url3" value="updateBook" disabled="disabled" >
     <hr size=2 color=red>
     <form id="form3" target="frmPage" action="" method="post">
       <b>书号</b>[<u>bID</u>](惟一标识每种书,最多30个字符,如“ISBN&nbsp7-5325-2480-9”)：<br><input class=edit type=text name="bID" value="ISBN 7-5325-2480-9"><br><br>
@@ -217,7 +217,7 @@
       <b>出版社</b>[<u>bPub</u>](最多30个字符，如“上海古籍出版社”)：<br><input class=edit type=text name="bPub" value="上海古籍出版社"><br><br>
       <b>出版日期</b>[<u>bDate</u>](提交格式为“yyyy-mm-dd”，如“2008-08-09”)：<br><input class=edit type=text name="bDate" value="2008-08-10"><br><br>
       <b>作者</b>[<u>bAuthor</u>](最多20个字符，如“王国维”)：<br><input class=edit type=text name="bAuthor" value="王国维"><br><br>
-      <b>内容摘要</b>[<u>bMem</u>](最多30个字符，如“高等教育出版社”)：<br><input class=edit type=text name="bMem" value="高等教育出版社"><br><br>
+      <b>类别</b>[<u>bMem</u>](最多10个字符，如“技术类”)：<br><input class=edit type=text name="bMem" value="非技术类"><br><br>
     </form>
     <center><input type=button value="修改书籍信息" onclick="DoSubmit()"></center><br>
     <span class="tip">
@@ -230,7 +230,7 @@
 		<li>该书<b>不</b>存在；返回的页面HTML应该是：</li><div class=htm>&lt;html&gt;&lt;body&gt;<br>
 	<b>&lt;div id='result' style='display:none'&gt;1&lt;/div&gt;</b><br>该书不存在<br>
 	&lt;/body&gt;&lt;/html&gt;</div>
-		<li>提交的参数有误，如书号没有填写，书名没有填写，日期填写不正确……等等；返回的页面HTML应该是：</li><div class=htm>&lt;html&gt;&lt;body&gt;<br>
+		<li>提交的参数有误，如书号没有填写，书名没有填写等等；返回的页面HTML应该是：</li><div class=htm>&lt;html&gt;&lt;body&gt;<br>
 	<b>&lt;div id='result' style='display:none'&gt;2&lt;/div&gt;</b><br>提交的参数有误：（其他你想输出的信息）<br>
 	&lt;/body&gt;&lt;/html&gt;</div>
 	</ul>
@@ -239,7 +239,7 @@
 
   <!-- 4 查询书籍 -->
   <div id="div4" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url4" value="findBook">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url4" value="findBook" disabled="disabled" >
     <hr size=2 color=red>
     <form id="form4" target="frmPage" action="" method="post">
       <b>书号</b>[<u>bID</u>]：<br><input class=edit type=text name="bID" value="ISBN 7-5325-2480-9"><br><br>
@@ -248,7 +248,7 @@
       <b>出版日期范围</b>[<u>bDate0～bDate1</u>]<br>
       <input class=edits type=text name="bDate0" size=10 value="2007-08-10">　～　<input class=edits type=text name="bDate1" size=10 value="2018-08-10"><br><br>
       <b>作者</b>[<u>bAuthor</u>]：<br><input class=edit type=text name="bAuthor" value="王国维"><br><br>
-      <b>内容摘要</b>[<u>bMem</u>]：<br><input class=edit type=text name="bMem" value="高等教育出版社"><br><br>
+      <b>类别</b>[<u>bMem</u>]：<br><input class=edit type=text name="bMem" value="非技术类"><br><br>
     </form>
     <center><input type=button value="查询书籍" onclick="DoSubmit()"></center><br>
     <span class="tip">
@@ -256,7 +256,7 @@
 	<li>查询方式除日期外，都要使用模糊查询方式，例如：书名中输入的是“ABC”，则返回结果中只要书名中包含字符串“ABC”的都满足此项要求
 	<li>查询成功返回的页面HTML应该返回一个&lt;table&gt;表格，表格中从第一列到最后一列的内容依次为：
 	<ol>
-		<li>书号<li>书名<li>总数量<li>在库数量<li>出版社<li>出版日期(格式为 yyyy-mm-dd 如“2008-09-6”)<li>作者<li>内容摘要
+		<li>书号<li>书名<li>总数量<li>在库数量<li>出版社<li>出版日期(格式为 yyyy-mm-dd 如“2008-09-6”)<li>作者<li>图书类别
 	</ol>
 	如下所示（示例HTML代码可能过宽，请使用横向滚动条）：
 	</li><div class=htm>
@@ -290,14 +290,14 @@
 
   <!-- 100 添加读者 -->
   <div id="div100" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url100" value="addReader">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url100" value="addReader" disabled="disabled" >
     <hr size=2 color=red>
     <form id="form100" target="frmPage" action="" method="post">
-      <b>证号</b>[<u>rID</u>](惟一标识每个读者,最多8个字符,如“A-31”)：<br><input class=edit type=text name="rID" value="A-31"><br><br>
-      <b>姓名</b>[<u>rName</u>](最多10个字，如“张三”)：<br><input class=edit type=text name="rName" value="张三"><br><br>
-      <b>性别</b>[<u>rSex</u>](应该填写“男”或者“女”)：<br><input class=edit type=text name="rSex" value="女"><br><br>
-      <b>系名</b>[<u>rDept</u>](最多10个字，如“计科系”)：<br><input class=edit type=text name="rDept" value="计科系"><br><br>
-      <b>年级</b>[<u>rGrade</u>](应该是正整数)：<br><input class=edit type=text name="rGrade" value="2014"><br><br>
+      <b>证号</b>(这里应该是员工的工号)：<br><input class=edit type=text name="rID" value="02032016007"><br><br>
+      <b>姓名</b>(最多10个字，如“张三”)：<br><input class=edit type=text name="rName" value="张三"><br><br>
+      <b>性别</b>(应该填写“男”或者“女”)：<br><input class=edit type=text name="rSex" value="男"><br><br>
+      <b>部门</b>(最多20个字，如“技术部商业运营平台组”)：<br><input class=edit type=text name="rDept" value="技术部商业运营平台组"><br><br>
+      <b>职位编号</b>(应该是正整数，如"03"表示开发岗位)：<br><input class=edit type=text name="rGrade" value="003"><br><br>
     </form>
     <center><input type=button value="添加读者" onclick="DoSubmit()"></center><br>
     <span class="tip">
@@ -309,7 +309,7 @@
 		<li>该证号已经存在；返回的页面HTML应该是：</li><div class=htm>&lt;html&gt;&lt;body&gt;<br>
 	<b>&lt;div id='result' style='display:none'&gt;1&lt;/div&gt;</b><br>该证号已经存在<br>
 	&lt;/body&gt;&lt;/html&gt;</div>
-		<li>提交的参数有误，如证号没有填写，年级不是填写的正整数……等等；返回的页面HTML应该是：</li><div class=htm>&lt;html&gt;&lt;body&gt;<br>
+		<li>提交的参数有误，如证号没有填写等等；返回的页面HTML应该是：</li><div class=htm>&lt;html&gt;&lt;body&gt;<br>
 	<b>&lt;div id='result' style='display:none'&gt;2&lt;/div&gt;</b><br>提交的参数有误：（其他你想输出的信息）<br>
 	&lt;/body&gt;&lt;/html&gt;</div>
 	</ul>
@@ -318,10 +318,10 @@
 
   <!-- 101 删除读者 -->
   <div id="div101" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url101" value="deleteReader">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url101" value="deleteReader" disabled="disabled" >
     <hr size=2 color=red>
     <form id="form101" target="frmPage" action="" method="post">
-      <b>证号</b>[<u>rID</u>](惟一标识每个读者,最多8个字符,如“A-31”)：<br><input class=edit type=text name="rID" value="A-31"><br><br>
+      <b>证号</b>(这里应该是员工的工号)：<br><input class=edit type=text name="rID" value="02032016007"><br><br>
     </form>
     <center><input type=button value="删除读者" onclick="DoSubmit()"></center><br>
     <span class="tip">
@@ -342,14 +342,14 @@
 
   <!-- 102 修改读者信息 -->
   <div id="div102" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url102" value="updateReader">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url102" value="updateReader" disabled="disabled" >
     <hr size=2 color=red>
     <form id="form102" target="frmPage" action="" method="post">
-      <b>证号</b>[<u>rID</u>](惟一标识每个读者,最多8个字符,如“A-31”)：<br><input class=edit type=text name="rID" value="A-31"><br><br>
-      <b>姓名</b>[<u>rName</u>](最多10个字，如“张三”)：<br><input class=edit type=text name="rName" value="张三"><br><br>
-      <b>性别</b>[<u>rSex</u>](应该填写“男”或者“女”)：<br><input class=edit type=text name="rSex" value="女"><br><br>
-      <b>系名</b>[<u>rDept</u>](最多10个字，如“计科系”)：<br><input class=edit type=text name="rDept" value="计科系"><br><br>
-      <b>年级</b>[<u>rGrade</u>](应该是正整数)：<br><input class=edit type=text name="rGrade" value="2013"><br><br>
+      <b>证号</b>(这里应该是员工的工号)：<br><input class=edit type=text name="rID" value="02032016007"><br><br>
+      <b>姓名</b>(最多10个字，如“张三”)：<br><input class=edit type=text name="rName" value="张三"><br><br>
+      <b>性别</b>(应该填写“男”或者“女”)：<br><input class=edit type=text name="rSex" value="男"><br><br>
+      <b>部门</b>(最多20个字，如“技术部商业运营平台组”)：<br><input class=edit type=text name="rDept" value="技术部商业运营平台组"><br><br>
+      <b>职位编号</b>(应该是正整数，如"03"表示开发岗位)：<br><input class=edit type=text name="rGrade" value="003"><br><br>
     </form>
     <center><input type=button value="修改读者信息" onclick="DoSubmit()"></center><br>
     <span class="tip">
@@ -362,7 +362,7 @@
 		<li>该证号<b>不</b>存在；返回的页面HTML应该是：</li><div class=htm>&lt;html&gt;&lt;body&gt;<br>
 	<b>&lt;div id='result' style='display:none'&gt;1&lt;/div&gt;</b><br>该证号不存在<br>
 	&lt;/body&gt;&lt;/html&gt;</div>
-		<li>提交的参数有误，如证号没有填写，年级不是填写的正整数……等等；返回的页面HTML应该是：</li><div class=htm>&lt;html&gt;&lt;body&gt;<br>
+		<li>提交的参数有误，如证号没有填写等等；返回的页面HTML应该是：</li><div class=htm>&lt;html&gt;&lt;body&gt;<br>
 	<b>&lt;div id='result' style='display:none'&gt;2&lt;/div&gt;</b><br>提交的参数有误：（其他你想输出的信息）<br>
 	&lt;/body&gt;&lt;/html&gt;</div>
 	</ul>
@@ -371,26 +371,35 @@
 
   <!-- 103 查询读者 -->
   <div id="div103" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url103" value="findReader">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url103" value="findReader" disabled="disabled">
     <hr size=2 color=red>
     <form id="form103" target="frmPage" action="" method="post">
-      <b>证号</b>[<u>rID</u>](惟一标识每个读者,最多8个字符,如“A-31”)：<br><input class=edit type=text name="rID" value="A-31"><br><br>
+      <!-- <b>证号</b>[<u>rID</u>](惟一标识每个读者,最多8个字符,如“A-31”)：<br><input class=edit type=text name="rID" value="A-31"><br><br>
       <b>姓名</b>[<u>rName</u>](最多10个字，如“张三”)：<br><input class=edit type=text name="rName" value="张三"><br><br>
       <b>性别</b>[<u>rSex</u>](应该填写“男”或者“女”)：<br><input class=edit type=text name="rSex" value="女"><br><br>
       <b>系名</b>[<u>rDept</u>](最多10个字，如“计科系”)：<br><input class=edit type=text name="rDept" value="计科系"><br><br>
-      <b>年级范围</b>[<u>rGrade0～rGrade1</u>](应该是正整数)：<br>
-      <input class=edits type=text name="rGrade0" size=4 value="2013">　～　<input class=edits type=text name="rGrade1" size=4 value="2015"><br><br>
+      <b>年级范围</b>[<u>rGrade0～rGrade1</u>](应该是正整数)：<br> -->
+
+      <b>证号</b>(这里应该是员工的工号)：<br><input class=edit type=text name="rID" value="02032016007"><br><br>
+      <b>姓名</b>(最多10个字，如“张三”)：<br><input class=edit type=text name="rName" value="张三"><br><br>
+      <b>性别</b>(应该填写“男”或者“女”)：<br><input class=edit type=text name="rSex" value="男"><br><br>
+      <b>部门</b>(最多20个字，如“技术部商业运营平台组”)：<br><input class=edit type=text name="rDept" value="技术部商业运营平台组"><br><br>
+      <!-- <b>职位编号</b>(应该是正整数，如"03"表示开发岗位)：<br><input class=edit type=text name="rGrade" value="003"><br><br> -->
+      <!-- <input class=edits type=text name="rGrade0" size=4 value="2013">　～　<input class=edits type=text name="rGrade1" size=4 value="2015"><br><br> -->
     </form>
     <center><input type=button value="查询读者" onclick="DoSubmit()"></center><br>
     <span class="tip">
 	<li>如未填写某项条件，表示在该项上不做限制
-	<li>查询方式除年级和性别外，都要使用模糊查询方式，例如：姓名中输入的是“ABC”，则返回结果中只要姓名中包含字符串“ABC”的都满足此项要求
+	<!-- <li>查询方式除年级和性别外，都要使用模糊查询方式，例如：姓名中输入的是“ABC”，则返回结果中只要姓名中包含字符串“ABC”的都满足此项要求 -->
 	<li>查询成功返回的页面HTML应该返回一个&lt;table&gt;表格，表格中从第一列到最后一列的内容依次为：
 	<ol>
-		<li>证号<li>姓名<li>性别(只能是“男”或“女”)<li>系名<li>年级(一定是正整数)
+		<!-- <li>证号<li>姓名<li>性别(只能是“男”或“女”)<li>系名<li>年级(一定是正整数) -->
+    <li>证号<li>姓名<li>性别(只能是“男”或“女”)<li>部门<li>职位编号
+
 	</ol>
-	HTML源码样板如下所示（请严格遵循此模板生成页面的HTML；示例HTML代码可能过宽，请使用横向滚动条查看）：
-	</li><div class=htm>
+	<!-- HTML源码样板如下所示（请严格遵循此模板生成页面的HTML；示例HTML代码可能过宽，请使用横向滚动条查看）：
+	</li> -->
+  <!-- <div class=htm>
 		&lt;html&gt;&lt;head&gt;&lt;META HTTP-EQUIV="Content-Type" Content="text-html;charset=utf-8"&gt;&lt;/head&gt;<br>
 		&lt;body&gt;<br>
 		<b>&lt;table border=1 id='result'&gt;<br>
@@ -400,13 +409,13 @@
 		&lt;/table&gt;</b><br>
 		&lt;/body&gt;<br>
 		&lt;/html&gt;
-	</div>
-	实际显示效果为：
+	</div> -->
+	<!-- 实际显示效果为：
 	<table border=1>
 	<tr><td>B-301</td><td>张三</td><td>男</td><td>计算机</td><td>2005</td></tr>
 	<tr><td>90-45</td><td>李四</td><td>女</td><td>中文</td><td>2006</td></tr>
 	<tr><td>…</td><td>…</td><td>男</td><td>…</td><td>…</td></tr>
-	</table>
+	</table> -->
 	<li>如果没有任何一个读者满足填写的条件，则返回页面的HTML应该是：
 	</li><div class=htm>
 		&lt;html&gt;&lt;head&gt;&lt;META HTTP-EQUIV="Content-Type" Content="text-html;charset=utf-8"&gt;&lt;/head&gt;<br>
@@ -421,10 +430,10 @@
 
   <!-- 104 查看某个读者未还书籍信息 -->
   <div id="div104" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url104" value="findOverdue">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url104" value="findOverdue" disabled="disabled" >
     <hr size=2 color=red>
     <form id="form104" target="frmPage" action="" method="post">
-      <b>证号</b>[<u>rID</u>](惟一标识每个读者,最多8个字符,如“A-31”)：<br><input class=edit type=text name="rID" value="A-31"><br><br>
+      <b>证号</b>[<u>rID</u>](这里应该是员工的工号)：<br><input class=edit type=text name="rID" value="02032016007"><br><br>
     </form>
     <center><input type=button value="查看某个读者未还书籍信息" onclick="DoSubmit()"></center><br>
     <span class="tip">
@@ -467,11 +476,11 @@
 
   <!-- 200 借书 -->
   <div id="div200" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url200" value="lendBook">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url200" value="lendBook" disabled="disabled">
     <hr size=2 color=red>
     <form id="form200" target="frmPage" action="" method="post">
-      <b>证号</b>[<u>rID</u>]：<br><input class=edit type=text name="rID" value="A-31"><br><br>
-      <b>书号</b>[<u>bID</u>]：<br><input class=edit type=text name="bID" value="ISBN 7-5325-2480-9"><br><br>
+      <b>证号</b>：<br><input class=edit type=text name="rID" value="02032016007"><br><br>
+      <b>书号</b>：<br><input class=edit type=text name="bID" value="ISBN 7-5325-2480-9"><br><br>
     </form>
     <center><input type=button value="借书" onclick="DoSubmit()"></center><br>
     <span class="tip">
@@ -504,11 +513,11 @@
 
   <!-- 201 还书 -->
   <div id="div201" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url201" value="returnBook">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url201" value="returnBook" disabled="disabled" >
     <hr size=2 color=red>
     <form id="form201" target="frmPage" action="" method="post">
-      <b>证号</b>[<u>rID</u>]：<br><input class=edit type=text name="rID" value="A-31"><br><br>
-      <b>书号</b>[<u>bID</u>]：<br><input class=edit type=text name="bID" value="ISBN 7-5325-2480-9"><br><br>
+      <b>证号</b>：<br><input class=edit type=text name="rID" value="02032016007"><br><br>
+      <b>书号</b>：<br><input class=edit type=text name="bID" value="ISBN 7-5325-2480-9"><br><br>
     </form>
     <center><input type=button value="还书" onclick="DoSubmit()"></center><br>
     <span class="tip">
@@ -532,7 +541,7 @@
 
   <!-- 202 超期读者列表 -->
   <div id="div202" style="display:none">
-    <font color=red><b>URL</b>(填写用于处理此次提交的asp文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url202" value="overdueList">
+    <font color=red><b>URL</b>(填写用于处理此次提交的文件相对于__index.htm的路径)：</font><br><input class=editr type=text id="url202" value="overdueList" disabled="disabled" >
     <hr size=2 color=red>
     <form id="form202" target="frmPage" action="" method="get">
     </form>
@@ -540,9 +549,9 @@
     <span class="tip">
 	<li>此项查询页面不提交任何参数，也就是说，只要访问此URL页面，就立刻返回超期读者列表；返回的页面HTM应该返回一个&lt;table&gt;表格，表格中从第一列到最后一列的内容依次为：
 	<ol>
-		<li>证号<li>姓名<li>性别(只能是“男”或“女”)<li>系名<li>年级(一定是正整数)
+		<li>证号<li>姓名<li>性别(只能是“男”或“女”)<li>部门<li>职位编号(一定是正整数)
 	</ol>
-	HTML源码样板如下所示（请严格遵循此模板生成页面的HTML；示例HTML代码可能过宽，请使用横向滚动条查看）：
+	<!-- HTML源码样板如下所示（请严格遵循此模板生成页面的HTML；示例HTML代码可能过宽，请使用横向滚动条查看）：
 	</li><div class=htm>
 		&lt;html&gt;&lt;head&gt;&lt;META HTTP-EQUIV="Content-Type" Content="text-html;charset=utf-8"&gt;&lt;/head&gt;<br>
 		&lt;body&gt;<br>
@@ -559,7 +568,7 @@
 	<tr><td>B-301</td><td>张三</td><td>男</td><td>计算机</td><td>2005</td></tr>
 	<tr><td>90-45</td><td>李四</td><td>女</td><td>中文</td><td>2006</td></tr>
 	<tr><td>…</td><td>…</td><td>男</td><td>…</td><td>…</td></tr>
-	</table>
+	</table> -->
 	<li>如果没有任何一个读者满足填写的条件，则返回页面的HTML应该是：
 	</li><div class=htm>
 		&lt;html&gt;&lt;head&gt;&lt;META HTTP-EQUIV="Content-Type" Content="text-html;charset=utf-8"&gt;&lt;/head&gt;<br>

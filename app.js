@@ -17,7 +17,8 @@ app.use(session({name:'bbs',secret:'bbs',cookie:{httpOnly:true,secure:false,maxA
 app.use('/',function(req,res,next)
 {
 	var url = req._path;
-	res.writeHead(302,{'Location':'/__index.htm'
+	// res.writeHead(302,{'Location':'/__index.htm'
+	res.writeHead(302,{'Location':'/login'
 		//add other headers here...
 	});
 	res.end();
@@ -49,6 +50,7 @@ require('./routes/findOverdue');
 require('./routes/lendBook');
 require('./routes/returnBook');
 require('./routes/overdueList');
+require('./routes/login');
 
 
 app.use(app.router);//use router
