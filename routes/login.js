@@ -33,7 +33,7 @@ $('#submit').click(function() {
   if(aID == 'admin' && aPassword == 'admin') {
     window.location.href = '/__index.htm';
   } else {
-    alert('password error')
+    alert('密码与账号不符，请重新输入')
   }
 })
 </script>
