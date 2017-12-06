@@ -6,21 +6,21 @@ app.route('/login', 'get', function*(req, res) {
   // return JSON.stringify({ success: true })
   // return getHtml("<div style='margin:20px auto; width: 200px'><div><label style='width:48px'>用户名:</label><input type='text'/></div><div><label style='width:48px'>密码:</label><input type='text'/></div><div><button>登录</button></div></div>")
   return getHtml(`
-    <form class="form-horizontal" style="margin: 20px 0">
+    <form class="form-horizontal" style="margin: 160px 0">
   <div class="form-group">
-    <label for="inputEmail3" class="col-sm-5 control-label">账号</label>
-    <div class="col-sm-2">
-      <input id="input1" type="text" class="form-control" id="inputEmail3" placeholder="账号">
+    <label for="inputEmail3" class="col-sm-5 control-label">账号：</label>
+    <div class="col-sm-3">
+      <input id="input1" type="text" class="form-control" id="inputEmail3" placeholder="请输入账号">
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPassword3" class="col-sm-5 control-label">密码</label>
-    <div class="col-sm-2">
-      <input id="input2" type="password" class="form-control" id="inputPassword3" placeholder="密码">
+    <label for="inputPassword3" class="col-sm-5 control-label">密码：</label>
+    <div class="col-sm-3">
+      <input id="input2" type="password" class="form-control" id="inputPassword3" placeholder="请输入密码">
     </div>
   </div>
   <div class="form-group">
-    <div class="col-sm-offset-5 col-sm-5">
+    <div class="col-xs-offset-6 col-sm-5">
       <button id="submit" type="button" class="btn btn-default">登录</button>
     </div>
   </div>
