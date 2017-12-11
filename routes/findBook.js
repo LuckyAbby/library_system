@@ -20,7 +20,7 @@ app.route('/findBook', 'post', function*(req, res) {
   let sql = 'select * from books where ';
 
   if (bID) {
-    sql += `bID like '%${bID}%' and `;
+    sql += `bID = '${bID}' and `;
   }
   if (bName) {
     sql += `bName like '%${bName}%' and `;
@@ -44,50 +44,44 @@ app.route('/findBook', 'post', function*(req, res) {
   sql += ' 1';
   console.log('sql: ', sql);
   try {
+    let html;
     console.log('sql: ', sql);
     const books = yield db.execSQL(sql);
-    let html = '<table border=1 id=\'result\' class="table table-striped table-hover">'+
-      '<tr>' +
-      '<td>书号</td>' +
-      '<td>书名</td>' +
-      '<td>总数量</td>' +
-      '<td>在库数量</td>' +
-      '<td>出版社</td>' +
-      '<td>出版日期</td>' +
-      '<td>作者</td>' +
-      '<td>类别</td>' +
-      '</tr>';
-    books.map((item) => {
-      console.log('item: ', item);
-      html += '<tr>' +
-        `<td>${item.bID}</td>` +
-        `<td>${item.bName}</td>` +
-        `<td>${item.bCnt}</td>` +
-        `<td>${item.bCntLeft}</td>` +
-        `<td>${item.bPub}</td>` +
-        `<td>${time.timestampToDate(item.bDate)}</td>` +
-        `<td>${item.bAuthor}</td>` +
-        `<td>${item.bMem}</td>` +
-      '</tr>';
-      // html += `
-      //   <tr>
-      //     <td>${item.bID}</td>
-      //     <td>${item.bName}</td>
-      //     <td>${item.bCnt}</td>
-      //     <td>${item.bCntLeft}</td>
-      //     <td>${item.bPub}</td>
-      //     <td>${item.timestampToDate(item.bDate)}</td>
-      //     <td>${item.bAuthor}</td>
-      //     <td>${item.bMem}</td>
-      //   </tr>
-      // `
-    });
-    html += '</table>';
-    console.log('查询书籍成功：', books);
-    return getHtml(html);
+    if (books.length === 0) {
+      html = '<p>未找到相关的图书信息，请仔细核对相关信息是否填写正确</p>';
+      return getHtml(html);
+    } else {
+      html = '<table border=1 id=\'result\' class="table table-striped table-hover">'+
+        '<tr>' +
+        '<td>书号</td>' +
+        '<td>书名</td>' +
+        '<td>总数量</td>' +
+        '<td>在库数量</td>' +
+        '<td>出版社</td>' +
+        '<td>出版日期</td>' +
+        '<td>作者</td>' +
+        '<td>类别</td>' +
+        '</tr>';
+      books.map((item) => {
+        console.log('item: ', item);
+        html += '<tr>' +
+          `<td>${item.bID}</td>` +
+          `<td>${item.bName}</td>` +
+          `<td>${item.bCnt}</td>` +
+          `<td>${item.bCntLeft}</td>` +
+          `<td>${item.bPub}</td>` +
+          `<td>${time.timestampToDate(item.bDate)}</td>` +
+          `<td>${item.bAuthor}</td>` +
+          `<td>${item.bMem}</td>` +
+        '</tr>';
+      });
+      html += '</table>';
+      console.log('查询书籍成功：', books);
+      return getHtml(html);
+    }
   } catch(e) {
     console.log('查询书籍失败：', JSON.stringify(e));
-    return getHtml("<div id='result' style='display:none'>2</div>查询书籍失败：" + JSON.stringify(e));
+    return getHtml("<div id='result' style='display:none'>2</div><p>查询书籍失败：" + JSON.stringify(e)+"</p>");
   }
 
 });

@@ -9,7 +9,7 @@ app.route('/deleteReader','post', function*(req, res) {
   console.log('删除读者...');
   const rID = req.body.rID;
   if (!rID) {
-    return getHtml("<div id='result' style='display:none'>3</div>请填写证号");
+    return getHtml("<div id='result' style='display:none'>3</div><p>删除读者失败：请填写证号</p>");
   }
 
   // 查询证件号是否存在
@@ -18,11 +18,11 @@ app.route('/deleteReader','post', function*(req, res) {
     const readers = yield db.execSQL(findReader, [rID]);
     console.log('readers: ', readers);
     if (readers.length === 0) {
-      return getHtml("<div id='result' style='display:none'>1</div>该证号不存在");
+      return getHtml("<div id='result' style='display:none'>1</div><p>删除读者失败：该证号不存在</p>");
     }
   } catch(e) {
     console.log('删除读者失败：', JSON.stringify(e));
-    return getHtml("<div id='result' style='display:none'>3</div>删除读者失败：" + JSON.stringify(e));
+    return getHtml("<div id='result' style='display:none'>3</div><p>删除读者失败：" + JSON.stringify(e)+"</p>");
   }
 
   // 查询是否有未归还书籍
@@ -30,21 +30,21 @@ app.route('/deleteReader','post', function*(req, res) {
   try {
     const lendList = yield db.execSQL(findLend, [rID]);
     if (lendList.length > 0) {
-      return getHtml("<div id='result' style='display:none'>2</div>该读者尚有书籍未归还");
+      return getHtml("<div id='result' style='display:none'>2</div><p>删除读者失败：该读者尚有书籍未归还</p>");
     }
   } catch (e) {
     console.log('删除读者失败：', JSON.stringify(e));
-    return getHtml("<div id='result' style='display:none'>3</div>删除读者失败：" + JSON.stringify(e));
+    return getHtml("<div id='result' style='display:none'>3</div><p>删除读者失败：" + JSON.stringify(e)+"</p>");
   }
 
   const deleteSql = 'delete from readers where rID = ?';
   try {
     const res = yield db.execSQL(deleteSql, [rID]);
     console.log('删除读者成功！');
-    return getHtml("<div id='result' style='display:none'>0</div>成功");
+    return getHtml("<div id='result' style='display:none'>0</div><p>删除读者成功</p>");
   } catch(e) {
     console.log('删除读者失败：', JSON.stringify(e));
-    return getHtml("<div id='result' style='display:none'>0</div>删除读者失败：" + JSON.stringify(e));
+    return getHtml("<div id='result' style='display:none'>0</div><p>删除读者失败：" + JSON.stringify(e)+"</p>");
   }
 
 

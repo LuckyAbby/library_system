@@ -7,7 +7,20 @@ exports.html={
 			<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		</head>
-		<body>`,
+		<body>
+		<h3>结果展示</h3>
+		<hr color="#e3e3e3">
+		<style>
+		body {
+      font-size: 16px;
+      margin: 2px 2px 2px 2px;
+      font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    }
+		p{
+			margin:5px;
+			color: #f1147d;
+		}
+		</style>`,
 	end:'</body></html>'
 };
 

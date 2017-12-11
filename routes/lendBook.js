@@ -16,11 +16,11 @@ app.route('/lendBook','post', function*(req, res) {
   try {
     const readers = yield db.execSQL(findReader, [rID]);
     if (readers.length === 0) {
-      return getHtml("<div id='result' style='display:none'>1</div>该证号不存在");
+      return getHtml("<div id='result' style='display:none'>1</div><p>借书失败：该证号不存在，请仔细核对是否填写正确</p>");
     }
   } catch(e) {
     console.log('查找证号出错，借书失败：', e);
-    return getHtml("<div id='result' style='display:none'>6</div>借书失败：" + JSON.stringify(e));
+    return getHtml("<div id='result' style='display:none'>6</div><p>借书失败：" + JSON.stringify(e)+"</p>");
   }
 
   // 查找书号
@@ -29,13 +29,13 @@ app.route('/lendBook','post', function*(req, res) {
     const books = yield db.execSQL(findBook, [bID]);
     console.log('books: ', books);
     if (books.length === 0) {
-      return getHtml("<div id='result' style='display:none'>2</div>该书号不存在");
+      return getHtml("<div id='result' style='display:none'>2</div><p>借书失败：该书号不存在，请仔细核对是否填写正确</p>");
     } else if (!(books[0].bCntLeft > 0 )) {
-      return getHtml("<div id='result' style='display:none'>5</div>该书已经全部借出");
+      return getHtml("<div id='result' style='display:none'>5</div><p>借书失败：该书已经全部借出</p>");
     }
   } catch (e) {
     console.log('查找书号出错，借书失败：', e);
-    return getHtml("<div id='result' style='display:none'>6</div>借书失败：" + JSON.stringify(e));
+    return getHtml("<div id='result' style='display:none'>6</div><p>借书失败：" + JSON.stringify(e)+"</p>");
   }
 
   // 查询是否有超期图书
@@ -49,11 +49,11 @@ app.route('/lendBook','post', function*(req, res) {
     const showReturnList = yield db.execSQL(findShouldReturn, [now, rID]);
     if (showReturnList.length > 0) {
       console.log('该读者有超期书未还');
-      return getHtml("<div id='result' style='display:none'>3</div>该读者有超期书未还");
+      return getHtml("<div id='result' style='display:none'>3</div><p>借书失败：该读者有超期书未还</p>");
     }
   } catch(e) {
     console.log('查询是否有超期图书出错');
-    return getHtml("<div id='result' style='display:none'>6</div>查询是否有超期图书出错，借书失败：" + JSON.stringify(e));
+    return getHtml("<div id='result' style='display:none'>6</div><p>查询是否有超期图书出错，借书失败：" + JSON.stringify(e)+"</p>");
   }
 
   // 查询是否已经借阅该书
@@ -65,7 +65,7 @@ app.route('/lendBook','post', function*(req, res) {
     console.log('lendBook: ', lendBook);
     if (lendBook.length > 0) {
       console.log('该读者已经借阅该书，且未归还');
-      return getHtml("<div id='result' style='display:none'>4</div>该读者已经借阅该书，且未归还");
+      return getHtml("<div id='result' style='display:none'>4</div><p>借书失败：该读者已经借阅该书，且未归还</p");
     }
   } catch (e) {
     console.log('查询是否已经借阅该书');
@@ -92,7 +92,7 @@ app.route('/lendBook','post', function*(req, res) {
     const updateRes = yield db.execSQL(updateBook, [bID]);
     console.log('更新books表：', updateRes);
     console.log('借书成功', updateRes);
-    return getHtml("<div id='result' style='display:none'>0</div>成功");
+    return getHtml("<div id='result' style='display:none'>0</div><p>借书成功</p>");
   } catch (e) {
     console.log('更新books表出错');
     return getHtml("<div id='result' style='display:none'>6</div>更新books表出错，借书失败：" + JSON.stringify(e));

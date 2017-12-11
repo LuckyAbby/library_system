@@ -16,40 +16,40 @@ app.route('/addNewBook','post', function*(req, res) {
   const bMem = req.body.bMem;
   const bCnt = req.body.bCnt;
   if (!bID) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写书号");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：请填写书本的ISBN编号</p>");
   }
   if (bID.length > 30) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：书号最多30个字符");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：书号最多30个字符</p>");
   }
   if (!bName) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写书名");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：请填写书名</p>");
   }
   if (bName.length > 30) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：书名最多30个字符");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：书名最多30个字符</p>");
   }
   if (!bDate) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写出版日期");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：请填写出版日期</p>");
   }
   if (!(/\d{4}-\d{2}-\d{2}/.test(bDate))) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：出版日期提交格式为yyyy-mm-dd");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：出版日期提交格式为yyyy-mm-dd</p>");
   }
   if (!bAuthor) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写作者");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：请填写作者</p>");
   }
   if (bAuthor.length > 20) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：作者最多20个字符");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：作者最多20个字符<p>");
   }
   if (!bMem) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写内容摘要");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：请填写图书类别</p>");
   }
   if (bMem.length > 30) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：内容摘要最多30个字符");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：图书类别要最多30个字符</p>");
   }
   if (!bCnt) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：请填写数量");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：请填写数量</p>");
   }
   if (!(parseInt(bCnt, 10) > 0)) {
-    return getHtml("<div id='result' style='display:none'>2</div>提交的参数有误：数量应该>0");
+    return getHtml("<div id='result' style='display:none'>2</div><p>您提交的参数有误：数量应该>0</p>");
   }
 
   const sqlFind = 'select bID from books where bID=?';
@@ -68,14 +68,14 @@ app.route('/addNewBook','post', function*(req, res) {
       yield db.execSQL(sqlInsert, params);
       // console.log(params);
       console.log('增加新书成功！');
-      return getHtml("<div id='result' style='display:none'>0</div>成功");
+      return getHtml("<div id='result' style='display:none'>0</div><p>添加图书成功</p>");
     } catch (e) {
       console.log('[ERROR]添加新书出错：', JSON.stringify(e));
-      return getHtml("<div id='result' style='display:none'>2</div>添加新书出错：" + JSON.stringify(e));
+      return getHtml("<div id='result' style='display:none'>2</div><p>添加新书出错：" + JSON.stringify(e)+"</p>");
     }
 
   } catch(e) {
     console.log('[ERROR]查询数据库出错：', JSON.stringify(e));
-    return getHtml("<div id='result' style='display:none'>2</div>查询数据库出错：" + JSON.stringify(e));
+    return getHtml("<div id='result' style='display:none'>2</div><p>查询数据库出错：" + JSON.stringify(e)+"</p>");
   }
 });

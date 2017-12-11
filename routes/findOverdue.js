@@ -31,36 +31,42 @@ app.route('/findOverdue', 'post', function*(req, res) {
 
 
   try {
+    let html;
     const lendList = yield db.execSQL(sqlLend, [rID]);
-    console.log('lendList: ', lendList);
-    let html = '<table border=1 id=\'result\' class="table table-striped table-hover">' +
-      '<tr>' +
-      '<td>书号</td>' +
-      '<td>书名</td>' +
-      '<td>借书日期</td>' +
-      '<td>应该还书的日期</td>' +
-      '<td>是否超期</td>' +
-      '</tr>';
-    lendList.map((item) => {
-      console.log('item: ', item);
-      let isOverdue = '否';
-      if (new Date().getTime() > item.showReturnTime) {
-        isOverdue = '是';
-      }
-      html += '<tr>' +
-        `<td>${item.bID}</td>` +
-        `<td>${item.bName}</td>` +
-        `<td>${time.timestampToDate(item.lendDate)}</td>` +
-        `<td>${time.timestampToDate(item.shouldReturnDate)}</td>` +
-        `<td>${isOverdue}</td>` +
-      '</tr>';
-    });
-    html += '</table>';
-    console.log('查询某个读者的未归还信息成功：', lendList);
-    return getHtml(html);
+    if (lendList.length === 0) {
+      html="<p>该读者没有未还的图书</p>";
+      return getHtml(html);
+    } else {
+      console.log('lendList: ', lendList);
+      html = '<table border=1 id=\'result\' class="table table-striped table-hover">' +
+        '<tr>' +
+        '<td>书号</td>' +
+        '<td>书名</td>' +
+        '<td>借书日期</td>' +
+        '<td>应该还书的日期</td>' +
+        '<td>是否超期</td>' +
+        '</tr>';
+      lendList.map((item) => {
+        console.log('item: ', item);
+        let isOverdue = '否';
+        if (new Date().getTime() > item.showReturnTime) {
+          isOverdue = '是';
+        }
+        html += '<tr>' +
+          `<td>${item.bID}</td>` +
+          `<td>${item.bName}</td>` +
+          `<td>${time.timestampToDate(item.lendDate)}</td>` +
+          `<td>${time.timestampToDate(item.shouldReturnDate)}</td>` +
+          `<td>${isOverdue}</td>` +
+        '</tr>';
+      });
+      html += '</table>';
+      console.log('查询某个读者的未归还信息成功：', lendList);
+      return getHtml(html);
+    }
   } catch(e) {
     console.log('查询某个读者的未归还信息失败：', JSON.stringify(e));
-    return getHtml("<div id='result' style='display:none'>2</div>查询某个读者的未归还信息失败：" + JSON.stringify(e));
+    return getHtml("<div id='result' style='display:none'>2</div><p>查询某个读者的未归还信息失败：" + JSON.stringify(e)+"</p>");
   }
 
 });

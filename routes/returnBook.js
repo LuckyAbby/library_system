@@ -16,7 +16,7 @@ app.route('/returnBook','post', function*(req, res) {
   try {
     const readers = yield db.execSQL(findReader, [rID]);
     if (readers.length === 0) {
-      return getHtml("<div id='result' style='display:none'>1</div>该证号不存在");
+      return getHtml("<div id='result' style='display:none'>1</div><p>还书失败：该证号不存在，请仔细核对是否填写正确</p>");
     }
   } catch(e) {
     console.log('查找证号出错，还书失败：', e);
@@ -28,7 +28,7 @@ app.route('/returnBook','post', function*(req, res) {
   try {
     const books = yield db.execSQL(findBook, [bID]);
     if (books.length === 0) {
-      return getHtml("<div id='result' style='display:none'>2</div>该书号不存在");
+      return getHtml("<div id='result' style='display:none'>2</div><p>还书失败：该书号不存在，请仔细核对是否填写正确</p>");
     }
   } catch (e) {
     console.log('查找书号出错，还书失败：', e);
@@ -41,7 +41,7 @@ app.route('/returnBook','post', function*(req, res) {
     const lendBook = yield db.execSQL(findLendBook, [bID, rID]);
     if (lendBook.length === 0) {
       console.log('该读者并未借阅该书');
-      return getHtml("<div id='result' style='display:none'>3</div>该读者并未借阅该书");
+      return getHtml("<div id='result' style='display:none'>3</div><p>还书失败：该读者并未借阅该书，请仔细核对是否填写正确</p>");
     }
   } catch (e) {
     console.log('查询是否已经借阅该书');
@@ -65,7 +65,7 @@ app.route('/returnBook','post', function*(req, res) {
     const updateRes = yield db.execSQL(updateBook, [bID]);
     console.log('更新books表：', updateRes);
     console.log('还书成功', updateRes);
-    return getHtml("<div id='result' style='display:none'>0</div>成功");
+    return getHtml("<div id='result' style='display:none'>0</div><p>还书成功</p>");
   } catch (e) {
     console.log('更新books表出错');
     return getHtml("<div id='result' style='display:none'>6</div>更新books表出错，还书失败：" + JSON.stringify(e));
