@@ -12,6 +12,7 @@ exports.html={
 		<hr color="#e3e3e3">
 		<style>
 		body {
+			background-image: url(./背景5.jpeg);
       font-size: 16px;
       margin: 2px 2px 2px 2px;
       font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;

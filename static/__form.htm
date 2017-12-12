@@ -90,12 +90,27 @@
     #selFrom {
       width: 200px;
     }
+    body {
+      margin-left: 5px;
+      background-image: url(./背景5.jpeg);
+    }
+    b {
+      color: #337ab7;
+    }
+    #selectItem {
+      width: 300px;
+      margin: 0 5px;
+    }
+    input.form-control {
+      width: 350px;
+    }
   </style>
 </head>
 
 <body>
   <h3>功能选择</h3>
   <hr color="#e3e3e3">
+  <div id="selectItem">
   请选择您要进行的操作：
   <select onchange="ChgForm()" id="selFrom" class="form-control">
 <option value="x" selected>数据库初始化
@@ -113,7 +128,9 @@
 <option value=201>还书
 <option value=202>超期读者列表
 </select>
-  <hr size=1 color="#e3e3e3">
+
+</div>
+<hr size=1 color="#e3e3e3">
   <!-- x 初始化数据库 -->
   <div id="divx">
     <div class="hide">

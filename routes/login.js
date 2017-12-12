@@ -21,11 +21,14 @@ app.route('/login', 'get', function*(req, res) {
   </div>
   <div class="form-group">
     <div class="col-xs-offset-6 col-sm-5">
-      <button id="submit" type="button" class="btn btn-default">登录</button>
+      <button id="submit" type="button" class="btn btn-primary">登录</button>
     </div>
   </div>
 </form>
 <script>
+window.onload= function(){
+  $('h3').hide();
+}
 $('#submit').click(function() {
   var aID = $('#input1').val();
   var aPassword = $('#input2').val();
