@@ -6,7 +6,8 @@ app.route('/login', 'get', function*(req, res) {
   // return JSON.stringify({ success: true })
   // return getHtml("<div style='margin:20px auto; width: 200px'><div><label style='width:48px'>用户名:</label><input type='text'/></div><div><label style='width:48px'>密码:</label><input type='text'/></div><div><button>登录</button></div></div>")
   return getHtml(`
-    <form class="form-horizontal" style="margin: 160px 0">
+    <h2 class="col-sm-8 col-xs-offset-4" style="margin-top:150px">欢迎使用乐读图书管理系统</h2>
+    <form class="form-horizontal" style="margin-top: 60px">
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-5 control-label">账号：</label>
     <div class="col-sm-3">
