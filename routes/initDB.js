@@ -6,6 +6,7 @@ const getHtml = require('./getHtml');
 
 app.route('/initDB', 'post', function * (req, res) {
   console.log('初始化数据库...');
+  const deleteBooks = 'drop table if exists books'
   const createBooks = 'create table books ( ' +
   // 'booksID integer primary key autoincrement, ' +
   'bID text, ' +
@@ -17,7 +18,7 @@ app.route('/initDB', 'post', function * (req, res) {
   'bCnt integer, ' +
   'bCntLeft integer' +
   ' ); ';
-
+  const deleteReaders = 'drop table if exists readers'
   const createReaders = 'create table readers ( ' +
   // 'readersID integer primary key autoincrement, ' +
   'rID text, ' +
@@ -32,6 +33,7 @@ app.route('/initDB', 'post', function * (req, res) {
   'aPassword text'
   ' ); ';
 
+  const deleteLead = 'drop table if exists lend'
   const createLend = 'create table lend ( ' +
   'bID text, ' +
   'rID text, ' +
@@ -42,6 +44,9 @@ app.route('/initDB', 'post', function * (req, res) {
   ' ); ';
 
   try {
+    yield db.execSQL(deleteBooks);
+    yield db.execSQL(deleteReaders);
+    yield db.execSQL(deleteLead);
     yield db.execSQL(createBooks);
     yield db.execSQL(createReaders);
     yield db.execSQL(createLend);
